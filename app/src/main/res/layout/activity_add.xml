@@ -50,8 +50,6 @@
                 android:hint="タスクの名前" />
         </com.google.android.material.textfield.TextInputLayout>
 
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
@@ -93,7 +91,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/editTextTextMultiLine"
+                        android:id="@+id/task_desc_input"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="タスクの説明" />
@@ -106,7 +104,7 @@
                 android:layout_height="match_parent">
 
                 <RatingBar
-                    android:id="@+id/ratingBar"
+                    android:id="@+id/priorBar"
                     style="@style/Widget.AppCompat.RatingBar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -139,7 +137,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/date_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="32dp"
@@ -170,7 +168,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/time_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="32dp"
@@ -183,7 +181,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="600dp" />
+                android:layout_height="300dp" />
 
         </LinearLayout>
     </ScrollView>

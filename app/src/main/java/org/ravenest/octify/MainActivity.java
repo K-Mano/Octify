@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.net.URL;
 
@@ -27,12 +28,15 @@ import static java.security.AccessController.getContext;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static String NEW_TASK_DATA = "";
     private BottomSheetBehavior sheetBehavior;
     private CardView bottom_sheet;
     private TextView sheet_state;
 
     private ConstraintLayout rootView;
     private ImageView blur;
+
+    private TaskObject obj;
 
     private Resources r;
 
@@ -96,6 +100,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onActivityResult( int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
@@ -106,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.add_button) {
             Intent intent = new Intent(this, AddActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent, 0);
         }
         return true;
     }
