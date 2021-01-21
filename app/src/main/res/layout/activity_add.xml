@@ -7,15 +7,198 @@
     android:background="@android:color/white"
     tools:context=".AddActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_aa"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/toolbar_base"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
+        android:layout_height="0dp"
+        android:background="#FFFFFF"
+        android:elevation="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:title="タスクの追加" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_aa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="タスクの追加" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="16dp"
+            app:boxBackgroundColor="@android:color/transparent"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:helperText="分かりやすい名前に設定しましょう"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_aa">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/task_name_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="タスクの名前" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_base">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="false">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginBottom="16dp"
+                    app:boxBackgroundColor="@android:color/transparent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextTextMultiLine"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="タスクの説明" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RatingBar
+                    android:id="@+id/ratingBar"
+                    style="@style/Widget.AppCompat.RatingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:progressTint="#FFD740"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/date_set"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackground">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:text="日付指定"
+                    android:textColor="@android:color/primary_text_light"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="32dp"
+                    android:text="なし"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/time_set"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackground">
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:text="時間指定"
+                    android:textColor="@android:color/primary_text_light"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="32dp"
+                    android:text="なし"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="600dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/submit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:clickable="true"
+        app:backgroundTint="@color/colorAccent"
+        app:tint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_baseline_check_24" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

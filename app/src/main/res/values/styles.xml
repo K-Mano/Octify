@@ -2,9 +2,22 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#E65100</item>
-        <item name="colorPrimaryDark">#F57F17</item>
-        <item name="colorAccent">#F57F17</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="materialCalendarStyle">@style/Widget.MaterialComponents.MaterialCalendar</item>
+        <item name="materialCalendarFullscreenTheme">@style/ThemeOverlay.MaterialComponents.MaterialCalendar.Fullscreen</item>
+        <item name="materialCalendarTheme">@style/ThemeOverlay.MaterialComponents.MaterialCalendar</item>
+    </style>
+
+    <style name="AppThemeMaterial" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="materialCalendarStyle">@style/Widget.MaterialComponents.MaterialCalendar</item>
+        <item name="materialCalendarFullscreenTheme">@style/ThemeOverlay.MaterialComponents.MaterialCalendar.Fullscreen</item>
+        <item name="materialCalendarTheme">@style/ThemeOverlay.MaterialComponents.MaterialCalendar</item>
     </style>
 
     <style name="AppTheme.NoActionBar">

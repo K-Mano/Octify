@@ -9,7 +9,7 @@
         android:id="@+id/sheet_base"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:behavior_peekHeight="300dp"
+        app:behavior_peekHeight="200dp"
         app:behavior_hideable="true"
         app:cardCornerRadius="15dp"
         app:cardElevation="15dp"
@@ -23,14 +23,14 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#F57F17">
+            android:background="@color/colorPrimary">
 
             <TextView
                 android:id="@+id/text_sheet_state"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="本日の予定を非表示"
+                android:text="今日の予定を表示"
                 android:textColor="@android:color/white"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
