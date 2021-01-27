@@ -1,6 +1,7 @@
 package org.ravenest.octify;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -19,6 +20,7 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.DisplayMetrics;
@@ -56,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
     public List<TaskObject.Model> tasks = new ArrayList<TaskObject.Model>();
 
     public static String NEW_TASK_RESULT = "";
+
     private BottomSheetBehavior sheetBehavior;
     private CardView bottom_sheet;
     private TextView sheet_state;
@@ -66,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
     private CoordinatorLayout rootView;
     private ConstraintLayout baseView;
+  
     private ImageView blur;
 
     private TaskObject obj;
@@ -79,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.main_toolbar);
 
@@ -105,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
         bottom_sheet = findViewById(R.id.sheet_base);
         sheetBehavior = BottomSheetBehavior.from(bottom_sheet);
+
         sheet_state = findViewById(R.id.sheet_state);
 
         sheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
@@ -153,12 +159,15 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onSlide(View view, float offset) {
+                blur.setAlpha(offset);
+                //bottom_sheet.setAlpha(1-(offset*0.05f));
+                if(offset==0){
+                    blur.setVisibility(View.GONE);
+                }else{
+                    if(blur.getVisibility()==View.GONE)blur.setVisibility(View.VISIBLE);
+                }
             }
         });
 
@@ -236,17 +245,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onActivityResult( int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         switch (id){
             case R.id.add_button:
@@ -257,8 +268,7 @@ public class MainActivity extends AppCompatActivity {
                 sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                 break;
         }
-
-        return super.onOptionsItemSelected(item);
+        return true;
     }
 
     private void reload(){

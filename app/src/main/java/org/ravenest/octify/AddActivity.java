@@ -1,6 +1,7 @@
 package org.ravenest.octify;
 
 import android.app.SearchManager;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,17 +11,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.RatingBar;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.util.Pair;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
 import com.google.android.material.datepicker.CalendarConstraints;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
+import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.timepicker.MaterialTimePicker;
@@ -69,14 +69,12 @@ public class AddActivity extends AppCompatActivity {
 
         Calendar calendar = Calendar.getInstance();
 
-        year  = calendar.get(Calendar.YEAR);
-        month = calendar.get(Calendar.MONTH);
-
-        setContentView(R.layout.activity_add);
-        final Toolbar toolbar = findViewById(R.id.toolbar_aa);
-
         // 外部クラスのインスタンス化
         final Utility util = new Utility();
+        int year = calendar.get(Calendar.YEAR);
+
+        setContentView(R.layout.activity_add);
+        Toolbar toolbar = findViewById(R.id.toolbar_aa);
 
         // ToolBarをActionBarとして設定
         setSupportActionBar(toolbar);
@@ -98,7 +96,7 @@ public class AddActivity extends AppCompatActivity {
         task_desc = findViewById(R.id.task_desc_input);
 
         fm = getSupportFragmentManager();
-
+      
         date_set.setOnClickListener(v -> {
             CalendarConstraints.Builder cc = new CalendarConstraints.Builder();
             cc.setStart(Calendar.getInstance().getTimeInMillis());

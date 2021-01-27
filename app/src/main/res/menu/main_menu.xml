@@ -12,5 +12,4 @@
         android:icon="@drawable/ic_baseline_add_24"
         android:title="タスクの追加"
         app:showAsAction="always" />
-
 </menu>
