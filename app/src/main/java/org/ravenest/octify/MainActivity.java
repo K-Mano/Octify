@@ -2,6 +2,7 @@ package org.ravenest.octify;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -20,6 +21,7 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.DisplayMetrics;
@@ -61,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
     public List<TaskObject.Model> tasks = new ArrayList<TaskObject.Model>();
 
     public static String NEW_TASK_RESULT = "";
+
     private BottomSheetBehavior sheetBehavior;
     private CardView bottom_sheet;
     private TextView sheet_state;
@@ -71,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
     private CoordinatorLayout rootView;
     private ConstraintLayout baseView;
+  
     private ImageView blur;
 
     private TaskObject obj;
@@ -84,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.main_toolbar);
 
@@ -110,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
 
         bottom_sheet = findViewById(R.id.sheet_base);
         sheetBehavior = BottomSheetBehavior.from(bottom_sheet);
+
         sheet_state = findViewById(R.id.sheet_state);
 
         sheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
@@ -241,6 +247,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onActivityResult( int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
@@ -258,8 +270,7 @@ public class MainActivity extends AppCompatActivity {
                 sheetBehavior.setState(STATE_COLLAPSED);
                 break;
         }
-
-        return super.onOptionsItemSelected(item);
+        return true;
     }
 
     private void reload(){
