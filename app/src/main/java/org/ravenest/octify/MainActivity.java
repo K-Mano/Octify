@@ -1,5 +1,6 @@
 package org.ravenest.octify;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.appcompat.widget.Toolbar;
@@ -32,6 +33,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
@@ -50,6 +52,9 @@ import java.util.concurrent.atomic.AtomicReference;
 
 import android.view.View;
 
+import jp.wasabeef.blurry.Blurry;
+
+import static com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_COLLAPSED;
 import static com.google.android.material.color.MaterialColors.ALPHA_FULL;
 import static org.ravenest.octify.Utility.drawableToBitmap;
 
@@ -134,42 +139,39 @@ public class MainActivity extends AppCompatActivity {
         tasks_list.addItemDecoration(divider);
 
         sheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
-            @Override
-            public void onStateChanged(View view, int newState) {
-                boolean flag=false;
+             @Override
+             public void onStateChanged(View view, int newState) {
+                 boolean flag = false;
 
-                switch (newState) {
-                    case BottomSheetBehavior.STATE_HIDDEN:
-                        break;
-                    case BottomSheetBehavior.STATE_EXPANDED:
-                        sheet_state.setText("今日の予定を隠す");
-                        break;
-                    case BottomSheetBehavior.STATE_COLLAPSED:
-                        sheet_state.setText("今日の予定を表示");
-                        Blurry.delete(rootView);
-                        flag=false;
-                        break;
-                    case BottomSheetBehavior.STATE_DRAGGING:
-                        if(!flag){
-                            flag=true;
-                            Blurry.with(getApplicationContext()).async().radius(2).sampling(12).capture(rootView).into(blur);
-                        }
-                        break;
-                    case BottomSheetBehavior.STATE_SETTLING:
-                }
-            }
+                 switch (newState) {
+                     case BottomSheetBehavior.STATE_HIDDEN:
+                         break;
+                     case BottomSheetBehavior.STATE_EXPANDED:
+                         sheet_state.setText("今日の予定を隠す");
+                         break;
+                     case STATE_COLLAPSED:
+                         sheet_state.setText("今日の予定を表示");
+                         Blurry.delete(rootView);
+                         flag = false;
+                         break;
+                     case BottomSheetBehavior.STATE_DRAGGING:
+                         if (!flag) {
+                             flag = true;
+                             Blurry.with(getApplicationContext()).async().radius(2).sampling(12).capture(rootView).into(blur);
+                         }
+                         break;
+                     case BottomSheetBehavior.STATE_SETTLING:
+                 }
+             }
 
-            @Override
-            public void onSlide(View view, float offset) {
+             @Override
+             public void onSlide(@NonNull View bottomSheet, float offset) {
                 blur.setAlpha(offset);
-                //bottom_sheet.setAlpha(1-(offset*0.05f));
-                if(offset==0){
-                    blur.setVisibility(View.GONE);
-                }else{
-                    if(blur.getVisibility()==View.GONE)blur.setVisibility(View.VISIBLE);
+                if(offset>0){
+                    if(blur.getVisibility()==View.GONE) blur.setVisibility(View.VISIBLE);
                 }
-            }
-        });
+             }
+         });
 
         // タスク読み込み
         reload();
@@ -245,12 +247,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult( int requestCode, int resultCode, Intent intent) {
-        super.onActivityResult(requestCode, resultCode, intent);
-
-    }
-
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
@@ -265,7 +261,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, 0);
                 break;
             case R.id.today_button:
-                sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                sheetBehavior.setState(STATE_COLLAPSED);
                 break;
         }
         return true;
