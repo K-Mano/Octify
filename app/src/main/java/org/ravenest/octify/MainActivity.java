@@ -247,12 +247,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult( int requestCode, int resultCode, Intent intent) {
-        super.onActivityResult(requestCode, resultCode, intent);
-
-    }
-
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
