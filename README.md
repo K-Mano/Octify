@@ -1,2 +1,2 @@
 # Octify
-Octify is a implimented task management app
+Octify is a improved task management app
